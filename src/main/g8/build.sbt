@@ -6,25 +6,21 @@ ThisBuild / useSuperShell := false
 lazy val `$name;format="norm"$` =
   project
     .in(file("."))
-    .aggregate(entities, domain, delivery, persistence, main)
+    .aggregate( domain, application, persistence, rest)
     .settings(
       name := "$name$"
     )
 
 addCommandAlias("run", "main/run")
 
-lazy val entities =
-  project
-    .in(file("entities"))
-
 lazy val domain =
   project
-    .in(file("core"))
-    .dependsOn(entities % oneToOneClasspathDependencies)
+    .in(file("domain"))
 
-lazy val delivery =
+
+lazy val application =
   project
-    .in(file("delivery"))
+    .in(file("application"))
     .dependsOn(domain % oneToOneClasspathDependencies)
 
 lazy val persistence =
@@ -32,10 +28,11 @@ lazy val persistence =
     .in(file("persistence"))
     .dependsOn(domain % oneToOneClasspathDependencies)
 
-lazy val main =
+lazy val rest =
   project
-    .in(file("main"))
-    .dependsOn(delivery % oneToOneClasspathDependencies)
+    .in(file("rest"))
+    .enablePlugins(PlayScala)
+    .dependsOn(application % oneToOneClasspathDependencies)
     .dependsOn(persistence % oneToOneClasspathDependencies)
 
 lazy val oneToOneClasspathDependencies: String =
@@ -44,7 +41,11 @@ lazy val oneToOneClasspathDependencies: String =
 addCommandAlias("gen", "$name;format="norm"$/g8Scaffold")
 
 onLoadMessage +=
-  s"""\nRun \${green("gen usecase")} to generate new use cases.\n"""
+  s"""
+\nRun \${green("gen usecase")} to generate new use cases.\n
+\nRun \${green("gen entity")} to generate new entities.\n
+  """
+
 
 def green(input: Any): String =
   scala.Console.GREEN + input + scala.Console.RESET
