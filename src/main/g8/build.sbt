@@ -6,7 +6,7 @@ ThisBuild / useSuperShell := false
 lazy val `$name;format="norm"$` =
   project
     .in(file("."))
-    .aggregate(entities, core, delivery, persistence, main)
+    .aggregate(entities, domain, delivery, persistence, main)
     .settings(
       name := "$name$"
     )
@@ -17,7 +17,7 @@ lazy val entities =
   project
     .in(file("entities"))
 
-lazy val core =
+lazy val domain =
   project
     .in(file("core"))
     .dependsOn(entities % oneToOneClasspathDependencies)
@@ -25,12 +25,12 @@ lazy val core =
 lazy val delivery =
   project
     .in(file("delivery"))
-    .dependsOn(core % oneToOneClasspathDependencies)
+    .dependsOn(domain % oneToOneClasspathDependencies)
 
 lazy val persistence =
   project
     .in(file("persistence"))
-    .dependsOn(core % oneToOneClasspathDependencies)
+    .dependsOn(domain % oneToOneClasspathDependencies)
 
 lazy val main =
   project
