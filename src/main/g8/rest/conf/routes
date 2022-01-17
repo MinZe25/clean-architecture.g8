@@ -1,2 +1,5 @@
 # Add here the routes for your application
 # https://www.playframework.com/documentation/2.8.x/ScalaRouting
+
+GET        /swagger.json        controllers.ApiHelpController.getResources
+GET        /docs/*file          controllers.Assets.at(path:String="/public/lib/swagger-ui/", file)
