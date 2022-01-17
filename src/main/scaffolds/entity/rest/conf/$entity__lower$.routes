@@ -1,0 +1,5 @@
+# Don't forget to add
+# -> /$entity;format="lower"$ $entity;format="lower"$.Routes
+# to the routes file
+GET / $package;format="lower,package"$.rest.controllers.$entity;format="Camel"$Controller.index
+
