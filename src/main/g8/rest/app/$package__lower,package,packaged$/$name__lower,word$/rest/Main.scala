@@ -1,5 +1,4 @@
-package $package;format="lower,package"$
-package $name;format="lower,word"$
+package $package;format="lower,package"$.$name;format="lower,word"$.rest
 
 object Main extends App {
   // run `sbt gen usecase` to generate

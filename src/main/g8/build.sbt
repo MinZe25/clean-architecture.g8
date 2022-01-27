@@ -3,40 +3,23 @@ ThisBuild / organization  := "$organization;format="lower,package"$"
 ThisBuild / scalaVersion  := "$scala_version$"
 ThisBuild / useSuperShell := false
 
-lazy val `$name;format="norm"$` =
+lazy val root =
   project
     .in(file("."))
-    .aggregate( domain, application, persistence, rest)
+    .withId("$name;format="norm"$")
+    .aggregate(rest)
     .settings(
       name := "$name$"
     )
 
-addCommandAlias("run", "main/run")
-
-lazy val domain =
-  project
-    .in(file("domain"))
-
-
-lazy val application =
-  project
-    .in(file("application"))
-    .dependsOn(domain % oneToOneClasspathDependencies)
-
-lazy val persistence =
-  project
-    .in(file("persistence"))
-    .dependsOn(domain % oneToOneClasspathDependencies)
+addCommandAlias("run", "rest/run")
 
 lazy val rest =
   project
     .in(file("rest"))
-    .enablePlugins(PlayScala)
-    .dependsOn(application % oneToOneClasspathDependencies)
-    .dependsOn(persistence % oneToOneClasspathDependencies)
 
 lazy val oneToOneClasspathDependencies: String =
-  "compile->compile;test->test"
+  "compile->compile;test->test;optional" // adding the optional tag so rest doesn't depend on domain
 
 addCommandAlias("gen", "$name;format="norm"$/g8Scaffold")
 

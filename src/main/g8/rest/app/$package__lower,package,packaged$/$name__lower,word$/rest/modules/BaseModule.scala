@@ -1,4 +1,4 @@
-package $package;format="lower,package"$.rest
+package $package;format="lower,package"$.$name;format="lower,word"$.rest
 package modules
 
 import com.google.inject._
