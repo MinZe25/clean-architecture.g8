@@ -1,5 +1,5 @@
 package $package;format="lower,package"$.$project;format="lower,word"$.application.$entity;format="lower,package"$
-import $package;format="lower,package"$.$project;format="lower,word"$.entities.$entity;format="Camel"$
+import $package;format="lower,package"$.domain.entities.$entity;format="Camel"$
 object $entity;format="Camel"$ConversionExtensions {
   implicit class $entity;format="Camel"$ConversionExtensions(val $entity;format="camel"$: $entity;format="Camel"$){
     def to$entity;format="Camel"$DTO:$entity;format="Camel"$ = $entity;format="Camel"$()

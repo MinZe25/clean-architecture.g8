@@ -3,7 +3,7 @@ package $project;format="lower,word"$
 package application
 package $entity;format="lower,package"$
 package $cqrs;format="lower,package"$
-import $package;format="lower,package"$.$project;format="lower,word"$.entities.$entity;format="Camel"$
+import $package;format="lower,package"$.domain.entities.$entity;format="Camel"$
 import io.github.minze25.scalamediator.core.{
   IMediator,
   SingleCommand,

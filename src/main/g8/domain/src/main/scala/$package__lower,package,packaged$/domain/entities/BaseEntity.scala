@@ -1,5 +1,4 @@
-package $package;format="lower,package"$.$name;format="lower,word"$.domain
-package entities
+package $package;format="lower,package"$.domain.entities
 
 import com.wix.accord.dsl.validator
 import com.wix.accord.{Result, Validator}

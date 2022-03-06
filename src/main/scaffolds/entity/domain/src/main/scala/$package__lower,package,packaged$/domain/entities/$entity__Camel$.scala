@@ -1,6 +1,4 @@
-package $package;format="lower,package"$
-package $project;format="lower,word"$
-package entities
+package $package;format="lower,package"$.domain.entities
 import com.wix.accord.Validator
 import com.wix.accord.dsl._
 case class $entity;format="Camel"$() extends BaseEntity {
